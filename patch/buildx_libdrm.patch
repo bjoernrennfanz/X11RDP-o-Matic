@@ -1,0 +1,39 @@
+diff --git a/xorg/X11R7.6/buildx.sh b/xorg/X11R7.6/buildx.sh
+index 22dfe15..ddad838 100755
+--- a/xorg/X11R7.6/buildx.sh
++++ b/xorg/X11R7.6/buildx.sh
+@@ -37,10 +37,17 @@ download_file()
+ 
+     cd downloads
+ 
+-    wget -cq $download_url/$file
+-    status=$?
+-    cd ..
+-    return $status
++    if [ "$file" = "libdrm-2.4.60.tar.gz" ]; then
++        wget -cq https://dri.freedesktop.org/libdrm/$file
++        status=$?
++        cd ..
++        return $status
++    else
++        wget -cq $download_url/$file
++        status=$?
++        cd ..
++        return $status
++    fi
+ }
+ 
+ remove_modules()
+diff --git a/xorg/X11R7.6/x11_file_list.txt b/xorg/X11R7.6/x11_file_list.txt
+index 254ac7a..babccb0 100644
+--- a/xorg/X11R7.6/x11_file_list.txt
++++ b/xorg/X11R7.6/x11_file_list.txt
+@@ -5,7 +5,7 @@ dri2proto-2.3.tar.bz2                           :  dri2proto-2.3
+ glproto-1.4.12.tar.bz2                          :  glproto-1.4.12                           :
+ libpciaccess-0.12.0.tar.bz2                     :  libpciaccess-0.12.0                      :
+ libpthread-stubs-0.3.tar.bz2                    :  libpthread-stubs-0.3                     :
+-libdrm-2.4.26.tar.bz2                           :  libdrm-2.4.26                            :
++libdrm-2.4.60.tar.gz                            :  libdrm-2.4.60                            :
+ damageproto-1.2.1.tar.bz2                       :  damageproto-1.2.1                        :
+ makedepend-1.0.3.tar.bz2                        :  makedepend-1.0.3                         :
+ libxml2-sources-2.7.8.tar.gz                    :  libxml2-2.7.8                            :

@@ -717,6 +717,9 @@ alter_xrdp_source()
   	patch -b -d "$WORKINGDIR/xrdp/xorg/X11R7.6" buildx.sh < "$PATCHDIR/buildx_patch.diff"
   fi
 
+  # Patch to newer libdrm
+  patch -b -d "$WORKINGDIR/xrdp/xorg/X11R7.6" -p3 < "$PATCHDIR/buildx_libdrm.patch"
+
   # Patch rdp Makefile
   patch -b -d "$WORKINGDIR/xrdp/xorg/X11R7.6/rdp" Makefile < "$PATCHDIR/rdp_Makefile.patch"
 
